@@ -5,46 +5,50 @@
 // b. O mesmo que o exercício 6, em caso de objeto Diretor.
 type People = User | Diretor;
 
-const peoples: People[] = [];
+const peoples: People[] = [
+  {
+    nome: "Frajola",
+    idade: 10,
+    ocupacao: "gato",
+    salario: undefined,
+  },
+  {nome: "Eduardo", idade: 32, salario: 12000, nivelComissao: 5},
+];
 
-const people1: People = {
-  nome: "Frajola",
-  idade: 10,
-  ocupacao: "gato",
-  salario: undefined,
-};
-
-const people2: People = {
-  nome: "Eduardo",
-  idade: 32,
-  salario: 12000,
-  nivelComissao: 5,
-};
-
-function addPeople(people: People) {
-  peoples.push(people);
+function listPeople(peoples: People[]) {
+  peoples.forEach((people) => {
+    if ("ocupacao" in people) {
+      if (people.salario === undefined) {
+        console.log(`
+      Nome: ${people.nome},
+      Idade: ${people.idade},
+      Ocupação: ${people.ocupacao},
+      Salário: N/A
+      `);
+      } else {
+        console.log(`
+      Nome: ${people.nome},
+      Idade: ${people.idade},
+      Ocupação: ${people.ocupacao},
+      Salário: R$${people.salario}
+      `);
+      }
+    } else if ("nivelComissao" in people) {
+      if (people.salario === undefined) {
+        console.log(`
+          Nome: ${people.nome},
+          Idade: ${people.idade},
+          Comissão: Nível${people.nivelComissao}
+          Salário: N/A
+          `);
+      } else {
+        console.log(`
+          Nome: ${people.nome},
+          Idade: ${people.idade},
+          Comissão: Nível ${people.nivelComissao}
+          Salário: R$${people.salario}
+          `);
+      }
+    }
+  });
 }
-addPeople(people1);
-addPeople(people2);
-
-// function listPeople(people: People) {
-//     peoples.find(people => {people.ocupacao})
-//   peoples.forEach((people) => {
-//     if () {
-//       console.log(`
-//           Nome: ${people.nome},
-//           Idade: ${people.idade},
-//           Comissão: Nível${people.nivelComissao}
-//           Salário: N/A
-//           `);
-//     } else {
-//       console.log(`
-//           Nome: ${people.nome},
-//           Idade: ${people.idade},
-//           Comissão: Nível ${people.nivelComissao}
-//           Salário: R$${people.salario}
-//           `);
-//     }
-//   });
-// }
-// listPeople();
